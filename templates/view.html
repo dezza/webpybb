@@ -1,0 +1,48 @@
+$def with (formSearch, posts, tid, slug)
+<!doctype html>
+<html lang='en'>
+<head>
+  <title>index : [host.domain] forums</title>
+  <link rel='stylesheet' href='/static/style.css' />
+</head>
+<body>
+
+<p>title</p>
+
+<form method='post'>
+$:formSearch.render()
+</form>
+
+<p>!paginator!</p>
+
+<!-- <form method='post'>
+<input type='text' style='background-color: #000; border: 1px dotted #fff; outline: 0;' />
+<input type='submit' style='background-color: #000; border: 1px dotted #fff; outline: 0; color: #fff;'  value='Search' />
+</form>
+!-->
+
+<br />
+<a href='#bottom'>[bottom]</a>
+<table id='main'>
+	<tbody>
+	$for post in posts:
+		<tr>
+			<td class='user'>[uid: $post.uid],,[avatar]</td>
+			<td class='post'>$:mark(post.body)</td>
+		</tr>
+		<tr>
+			<td class='created' colspan='2'><a href='#$post.id' id='$post.id'>permalink</a></td>
+		</tr>
+
+	</tbody>
+
+		<tr>
+		        <td colspan='2'><form method='POST' action='/bb/reply/$tid-$slug'>
+				<textarea id='reply' name='reply'></textarea>
+				<button id='btnReply' name='replySubmit'>Reply</button>
+			</form></td>
+		</tr>
+</table>
+<a href='#top' id='bottom'>[top]</a>
+</body>
+</html>

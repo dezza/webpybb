@@ -1,0 +1,39 @@
+$def with (search)
+
+<!doctype html>
+<html lang='en'>
+<head>
+  <title>index : [host.domain] forums</title>
+  <link rel='stylesheet' href='/static/style.css' />
+</head>
+<body>
+
+<p>title</p>
+
+<form method='post'>
+$:search.render()
+</form>
+
+<p>!paginator!</p>
+
+<!-- <form method='post'>
+<input type='text' style='background-color: #000; border: 1px dotted #fff; outline: 0;' />
+<input type='submit' style='background-color: #000; border: 1px dotted #fff; outline: 0; color: #fff;'  value='Search' />
+</form>
+!-->
+
+<br />
+<a href="/bb/topic/new">[ new thread ]</a>
+<table id='main'>
+	<tbody>
+		<tr>
+			<td><form method='POST' action='/bb/topic/new'>
+				<label for='title'>Title:</label><input type="text" name='title' /></a><br />
+                                <label for='body'>Body (markdown):</label><br /><textarea id='body' name='b'></textarea>
+                                <button id='btnSubmit' name='newSubmit'>Start new Topic</button>
+                        </form></td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>

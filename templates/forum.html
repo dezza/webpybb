@@ -1,0 +1,45 @@
+$def with (search, topics)
+
+<!doctype html>
+<html lang='en'>
+<head>
+  <title>index : [host.domain] forums</title>
+  <link rel='stylesheet' href='/static/style.css' />
+</head>
+<body>
+
+<p>title</p>
+
+<form method='post' action='/bb/search/results'>
+$:search.render()
+</form>
+
+<p>!paginator!</p>
+
+<!-- <form method='post'>
+<input type='text' style='background-color: #000; border: 1px dotted #fff; outline: 0;' />
+<input type='submit' style='background-color: #000; border: 1px dotted #fff; outline: 0; color: #fff;'  value='Search' />
+</form>
+!-->
+
+<br />
+<a href="/bb/topic/new">[ new thread ]</a>
+<table id='main'>
+	<thead>
+		<tr>
+			<th scope="col">Name</th>
+			<th scope="col">Replies</th>
+			<th scope="col">Last Post</th>
+		</tr>
+	</thead>
+	<tbody>
+$for topic in topics:
+		<tr>
+			<td class='tc1'><a href="/bb/topic/$topic.id-$topic.slug">$topic.title</a></td>
+			<td class='tc2'>$topic.replies</td>
+			<td class='tc3'><a href='/bb/topic/$topic.id-$topic.slug#$topic.last_post'>by $topic.last_poster @ (unixtime:$topic.date)</a></td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>
