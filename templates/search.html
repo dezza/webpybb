@@ -1,25 +1,8 @@
-$def with (formSearch, topics)
-<!doctype html>
-<html lang='en'>
-<head>
-  <title>index : [host.domain] forums</title>
-  <link rel='stylesheet' href='/static/style.css' />
-</head>
-<body>
-
-<p>title</p>
-
+$def with (title,formSearch,topics)
+$var title:$title
 <form method='post'>
 $:formSearch.render()
 </form>
-
-<p>!paginator!</p>
-
-<!-- <form method='post'>
-<input type='text' style='background-color: #000; border: 1px dotted #fff; outline: 0;' />
-<input type='submit' style='background-color: #000; border: 1px dotted #fff; outline: 0; color: #fff;'  value='Search' />
-</form>
-!-->
 
 <br />
 
@@ -29,9 +12,5 @@ $:formSearch.render()
 		<tr>
 			<td>$topic.title</td>
 		</tr>
-
-
 	</tbody>
 </table>
-</body>
-</html>

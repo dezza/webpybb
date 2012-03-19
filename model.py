@@ -4,6 +4,8 @@ import web
 #db = web.database(dbn='mysql', db='bb', user='root', pw='pass')
 import config # ^ this is
 
+db = config.db
+
 def getTopics(fid):
 	return db.select('topics', order='id', where='fid='+str(fid))
 

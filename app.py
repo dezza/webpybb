@@ -5,6 +5,7 @@ import model
 import markdown
 
 urls = (
+	'/', 'test',
 	'/bb', 'index',				# Index
 	'/bb/topic/(\d+)-([a-z0-9-]+)', 'view',	# View Topic
 	'/bb/topic/new', 'new',			# New Topic
@@ -13,18 +14,21 @@ urls = (
 )
 
 ### Templates
-render = web.template.render('templates/', globals={'mark':markdown.markdown})
+render = web.template.render('templates/',base='base',globals={'mark':markdown.markdown})
 formSearch = form.Form(form.Textbox('q', description=''),form.Button('search'))
 #formNewPost = form.Form(
 #			form.Textarea('reply',description='Reply:'),
 #			form.Button('Reply'),
                         
 #)
+class test:
+    def GET(self):
+        return render.test('titel-og-kage')
 
 class index:
     def GET(self):	# form (search)
         topics = model.getTopics(0)
-        return render.forum(formSearch,topics)
+        return render.forum('index',formSearch,topics)
     def POST(self):
         form = search()
 	if form.validates():
@@ -39,7 +43,7 @@ class view:
 	posts = model.getPosts(tid)
 	topic = model.getTopic(slug, tid)
 	if(posts and topic):
-            return render.view(formSearch, posts, tid, slug)
+            return render.view(topic[0].title,formSearch, posts, tid, slug)
         else:
             return 'wrong topic'
 # Add Reply (Post)
@@ -57,7 +61,7 @@ class add:
 # New Topic
 class new:
     def GET(self):
-        return render.new(formSearch)
+        return render.new('New Topic',formSearch)
     def POST(self):
 	i = web.input()
 	q = model.addTopic(i.title, i.b)
@@ -69,7 +73,7 @@ class search:
 	i = web.input()
 	q = i.q
 	results = model.search(q)
-	return render.search(formSearch,results)
+	return render.search('Search',formSearch,results)
  
 app = web.application(urls, globals())
 if __name__ == '__main__': app.run()

@@ -1,26 +1,8 @@
-$def with (search, topics)
-
-<!doctype html>
-<html lang='en'>
-<head>
-  <title>index : [host.domain] forums</title>
-  <link rel='stylesheet' href='/static/style.css' />
-</head>
-<body>
-
-<p>title</p>
-
+$def with (title, search, topics)
+$var title:$title
 <form method='post' action='/bb/search/results'>
 $:search.render()
 </form>
-
-<p>!paginator!</p>
-
-<!-- <form method='post'>
-<input type='text' style='background-color: #000; border: 1px dotted #fff; outline: 0;' />
-<input type='submit' style='background-color: #000; border: 1px dotted #fff; outline: 0; color: #fff;'  value='Search' />
-</form>
-!-->
 
 <br />
 <a href="/bb/topic/new">[ new thread ]</a>
@@ -41,5 +23,3 @@ $for topic in topics:
 		</tr>
 	</tbody>
 </table>
-</body>
-</html>
